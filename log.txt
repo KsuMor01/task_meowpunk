@@ -1,0 +1,241 @@
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    12     55.4 MiB     55.4 MiB           1   @profile(stream=f)
+    13                                         def fileNotFound(filepath):
+    14                                             """
+    15                                             Helps to raise FileNotFoundError if the file not exists
+    16                                             :param filepath: string path to the file
+    17                                             :return: empty
+    18                                             """
+    19     55.4 MiB      0.0 MiB           1       if not os.path.exists(filepath):
+    20                                                 raise FileNotFoundError(f"File {filepath} not found")
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    12     55.4 MiB     55.4 MiB           1   @profile(stream=f)
+    13                                         def fileNotFound(filepath):
+    14                                             """
+    15                                             Helps to raise FileNotFoundError if the file not exists
+    16                                             :param filepath: string path to the file
+    17                                             :return: empty
+    18                                             """
+    19     55.4 MiB      0.0 MiB           1       if not os.path.exists(filepath):
+    20                                                 raise FileNotFoundError(f"File {filepath} not found")
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    12     55.4 MiB     55.4 MiB           1   @profile(stream=f)
+    13                                         def fileNotFound(filepath):
+    14                                             """
+    15                                             Helps to raise FileNotFoundError if the file not exists
+    16                                             :param filepath: string path to the file
+    17                                             :return: empty
+    18                                             """
+    19     55.4 MiB      0.0 MiB           1       if not os.path.exists(filepath):
+    20                                                 raise FileNotFoundError(f"File {filepath} not found")
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    80    491.4 MiB    491.4 MiB           1       @profile(stream=f)
+    81                                             def read_sql(self, conn, name):
+    82                                                 """
+    83                                                 Reads sql table into pandas Dataframe
+    84                                                 :param conn: the sqlite3 connection to db
+    85                                                 :param name: string the name of the table in db
+    86                                                 :return: pandas Dataframe of the table
+    87                                                 """
+    88    495.1 MiB      3.7 MiB           3           sql_query = pd.read_sql_query(f'''
+    89                                                                                SELECT
+    90                                                                                *
+    91    491.4 MiB      0.0 MiB           1                                          FROM {name}
+    92    491.4 MiB      0.0 MiB           1                                          ''', conn)
+    93                                         
+    94    495.1 MiB      0.0 MiB           1           db = pd.DataFrame(sql_query)
+    95    495.1 MiB      0.0 MiB           1           conn.close()
+    96    495.1 MiB      0.0 MiB           1           return db
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    80    495.1 MiB    495.1 MiB           1       @profile(stream=f)
+    81                                             def read_sql(self, conn, name):
+    82                                                 """
+    83                                                 Reads sql table into pandas Dataframe
+    84                                                 :param conn: the sqlite3 connection to db
+    85                                                 :param name: string the name of the table in db
+    86                                                 :return: pandas Dataframe of the table
+    87                                                 """
+    88    495.2 MiB      0.0 MiB           3           sql_query = pd.read_sql_query(f'''
+    89                                                                                SELECT
+    90                                                                                *
+    91    495.1 MiB      0.0 MiB           1                                          FROM {name}
+    92    495.1 MiB      0.0 MiB           1                                          ''', conn)
+    93                                         
+    94    495.2 MiB      0.0 MiB           1           db = pd.DataFrame(sql_query)
+    95    495.2 MiB      0.0 MiB           1           conn.close()
+    96    495.2 MiB      0.0 MiB           1           return db
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    98    495.1 MiB    495.1 MiB           1       @profile(stream=f)
+    99                                             def create_empty_sqlite_table(self, out_tb_name, col_names):
+   100                                                 """
+   101                                                 Creates an empty table with column names and reads it in the pandas Dataframe
+   102                                                 :param out_tb_name: string name of the output table
+   103                                                 :param col_names: # list of string column names
+   104                                                 :return: pandas Dataframe of the empty db
+   105                                                 """
+   106    495.1 MiB      0.0 MiB           1           conn = sqlite3.connect(f'{out_tb_name}.db')
+   107    495.1 MiB      0.0 MiB           1           cur = conn.cursor()
+   108    495.1 MiB      0.0 MiB           7           cur.execute(f"""CREATE TABLE IF NOT EXISTS {out_tb_name}(
+   109    495.1 MiB      0.0 MiB           1                              {col_names[0 ]} TEXT,
+   110    495.1 MiB      0.0 MiB           1                              {col_names[1]} TEXT,
+   111    495.1 MiB      0.0 MiB           1                              {col_names[2]} TEXT,
+   112    495.1 MiB      0.0 MiB           1                              {col_names[3]} INT PRIMARY KEY,
+   113    495.1 MiB      0.0 MiB           1                              {col_names[4]} TEXT,
+   114    495.1 MiB      0.0 MiB           1                              {col_names[5]} TEXT);
+   115                                                                 """)
+   116    495.1 MiB      0.0 MiB           1           conn.commit()
+   117    495.2 MiB      0.0 MiB           1           return self.read_sql(conn, out_tb_name)
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    25     55.4 MiB     55.4 MiB           1       @profile(stream=f)
+    26                                             def __init__(self, cl_path, serv_path, db_path, tb_name, out_tb_name, col_names):
+    27                                                 """
+    28                                                 The consrtuctor of the Cheaters class. Loads the data from csv and db files to memory
+    29                                                 :param cl_path: string path to clients.csv
+    30                                                 :param serv_path: string path to server.csv
+    31                                                 :param db_path: string path to cheaters.db
+    32                                                 :param tb_name: string name of sql table in cheaters.db
+    33                                                 :param out_tb_name: string name the output db file
+    34                                                 :param col_names: list of string names of the output table columns
+    35                                                 """
+    36     55.4 MiB      0.0 MiB           1           print('Loading data...')
+    37    277.2 MiB    221.8 MiB           1           self.client = pd.read_csv(cl_path)
+    38    491.2 MiB    214.0 MiB           1           self.server = pd.read_csv(serv_path)
+    39    491.4 MiB      0.2 MiB           1           conn = sqlite3.connect(db_path)
+    40    495.1 MiB      3.7 MiB           1           self.db_table = self.read_sql(conn, tb_name)
+    41    495.2 MiB      0.0 MiB           1           self.df = self.create_empty_sqlite_table(out_tb_name, col_names)
+    42    495.2 MiB      0.0 MiB           1           print('Data loaded!')
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    44    495.2 MiB    495.2 MiB           1       @profile(stream=f)
+    45                                             def edit_data(self, date_str):
+    46                                                 """
+    47                                                 Edits the data from files. Takes data for goal date, merges 2 csv files, filters cheaters and forms output table
+    48                                                 :param date_str: string the goal date in yyyy-mm-dd format
+    49                                                 :return: empty
+    50                                                 """
+    51    495.2 MiB      0.0 MiB           1           print('Editing the data...')
+    52                                                 # the goal date
+    53    495.2 MiB      0.0 MiB           3           def df_on_date(date, df):
+    54    498.0 MiB -16880484.1 MiB      266712               return df[df.timestamp.map(lambda x: datetime.datetime.fromtimestamp(x).date())
+    55    497.7 MiB   -126.8 MiB           2                         == datetime.datetime.fromisoformat(date).date()]
+    56                                         
+    57    370.9 MiB   -127.1 MiB           1           self.client = df_on_date(date_str, self.client)
+    58    236.3 MiB   -261.6 MiB           1           self.server = df_on_date(date_str, self.server)
+    59                                         
+    60                                                 # merge 2 tables
+    61    236.6 MiB      0.3 MiB           1           self.df = self.client.merge(self.server, on='error_id', how='outer')
+    62                                         
+    63                                                 # filter cheaters
+    64    236.7 MiB      0.0 MiB           1           to_delete_df = self.client.merge(self.server, on='error_id', how='inner')
+    65    238.3 MiB      1.7 MiB           1           to_delete_df = to_delete_df.merge(self.db_table, on='player_id', how='inner')
+    66                                         
+    67    238.4 MiB      0.0 MiB           1           to_delete_df = \
+    68    238.4 MiB      0.1 MiB         120               to_delete_df[(to_delete_df.ban_time.map(lambda x: pd.to_datetime(x)) + datetime.timedelta(hours=24))
+    69    238.4 MiB      0.0 MiB         119                            <= to_delete_df.timestamp_y.map(lambda x: datetime.datetime.fromtimestamp(x))]
+    70                                         
+    71                                                 # delete filtered cheaters from the merged table
+    72    238.6 MiB      0.1 MiB           1           self.df = self.df.loc[~self.df.player_id.isin(list(to_delete_df.player_id))]
+    73                                         
+    74                                                 # format the output table
+    75    238.6 MiB      0.0 MiB           1           self.df = self.df.drop('timestamp_x', axis=1)
+    76    238.6 MiB      0.0 MiB           2           self.df = self.df.rename(columns={'timestamp_y': 'timestamp', 'description_x': 'json_client',
+    77    238.6 MiB      0.0 MiB           1                                             'description_y': 'json_server'})
+    78    238.6 MiB      0.0 MiB           1           print('The output table formed!')
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   119    238.6 MiB    238.6 MiB           1       @profile(stream=f)
+   120                                             def write_pd_to_sqlite(self, out_tb_name):
+   121                                                 """
+   122                                                 Writes the pandas Dataframe into sqlite3 db file
+   123                                                 :param out_tb_name: string name of the output db file
+   124                                                 :return: empty
+   125                                                 """
+   126    238.6 MiB      0.0 MiB           1           print('Writing table into database...')
+   127                                         
+   128    238.6 MiB      0.0 MiB           1           conn = sqlite3.connect(f'{out_tb_name}.db')
+   129    238.9 MiB      0.3 MiB           1           self.df.to_sql(f'{out_tb_name}', conn, if_exists='replace', index=False)
+   130                                                 # print(list(conn.execute(f"select * from {out_tb_name}")))
+   131    238.9 MiB      0.0 MiB           1           conn.commit()
+   132    238.9 MiB      0.0 MiB           1           conn.close()
+   133    238.9 MiB      0.0 MiB           1           print(f'The data has been written to {out_tb_name}.db')
+
+
+Filename: F:\python_projects\task_meowpunk\main.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   136     55.4 MiB     55.4 MiB           1   @profile(stream=f)
+   137                                         def run():
+   138                                         
+   139     55.4 MiB      0.0 MiB           1       table_name = 'cheaters'
+   140     55.4 MiB      0.0 MiB           1       output_table_name = 'output'
+   141                                         
+   142     55.4 MiB      0.0 MiB           1       columns_names = ['timestamp1', 'player_id', 'event_id', 'error_id', 'json_server', 'json_client']
+   143                                         
+   144     55.4 MiB      0.0 MiB           1       print('Enter csv files paths')
+   145     55.4 MiB      0.0 MiB           1       print('First file path: ')
+   146                                             # client_path = input()
+   147     55.4 MiB      0.0 MiB           1       client_path = 'data/client.csv'
+   148     55.4 MiB      0.0 MiB           1       fileNotFound(client_path)
+   149                                         
+   150     55.4 MiB      0.0 MiB           1       print('Second file path: ')
+   151                                             # server_path = input()
+   152     55.4 MiB      0.0 MiB           1       server_path = 'data/server.csv'
+   153     55.4 MiB      0.0 MiB           1       fileNotFound(server_path)
+   154                                         
+   155     55.4 MiB      0.0 MiB           1       print('Enter database path:')
+   156                                             # database_path = input()
+   157     55.4 MiB      0.0 MiB           1       database_path = 'data/cheaters.db'
+   158     55.4 MiB      0.0 MiB           1       fileNotFound(database_path)
+   159                                         
+   160     55.4 MiB      0.0 MiB           1       print('Enter the date in format  YYYY-MM-DD')
+   161                                             # date_string = input()
+   162     55.4 MiB      0.0 MiB           1       date_string = '2021-03-07'
+   163     55.4 MiB      0.0 MiB           1       datetime.datetime.strptime(date_string, '%Y-%m-%d') # check if the string in the goal format
+   164                                         
+   165    495.2 MiB    439.8 MiB           1       ch = Cheaters(client_path, server_path, database_path, table_name, output_table_name, columns_names)
+   166    238.6 MiB   -256.6 MiB           1       ch.edit_data(date_string)
+   167    238.9 MiB      0.3 MiB           1       ch.write_pd_to_sqlite(output_table_name)
+
+
